@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "sewalapak",
+    "password": null,
+    "database": "sewalapak",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "sewalapak",
+    "password": null,
+    "database": "sewalapak",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "sewalapak",
+    "password": null,
+    "database": "sewalapak",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "port": 8081
+}
