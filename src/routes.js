@@ -2,6 +2,7 @@ const AuthenticationController = require('./controllers/AuthenticationController
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const PostingController = require('./controllers/PostingController')
 const LokasiController = require('./controllers/LokasiController')
+const KategoriController = require('./controllers/KategoriController')
 
 module.exports = (app) => {
   app.post('/register',
@@ -34,4 +35,16 @@ module.exports = (app) => {
 
   app.delete('/lokasi/:id',
     LokasiController.delete)
+
+  app.post('/kategori',
+    KategoriController.save)
+
+  app.get('/kategori',
+    KategoriController.getAll)
+
+  app.get('/kategori/:id',
+    KategoriController.getOne)
+
+  app.delete('/kategori/:id',
+    KategoriController.delete)
 }
