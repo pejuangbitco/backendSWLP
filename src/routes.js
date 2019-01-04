@@ -36,6 +36,9 @@ module.exports = (app) => {
   app.delete('/lokasi/:id',
     LokasiController.delete)
 
+  // app.delete('/lokasi/:id',
+  //   LokasiController.delete)
+
   app.post('/kategori',
     KategoriController.save)
 
@@ -47,4 +50,7 @@ module.exports = (app) => {
 
   app.delete('/kategori/:id',
     KategoriController.delete)
+
+  app.post('/kategori/:id',
+    KategoriController.update)
 }

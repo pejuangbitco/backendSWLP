@@ -14,13 +14,14 @@ module.exports = {
     try {
       const user = await User.create(req.body)
       const userJson = user.toJSON()
+      const tokenUser = jwtSignUser(userJson)
       res.send({
-        user: userJson,
-        token: jwtSignUser(userJson)
+        user: user,
+        token: tokenUser
       })
     } catch (error) {
-      res.status(404).send({
-        error: `this email already resgitered`
+      res.status(400).send({
+        error: `something error: ${error}`
       })
     }
   },
@@ -38,8 +39,9 @@ module.exports = {
           error: `Akun tidak ditemukan.`
         })
       }
-
+      console.log(`password: ${password}`)
       const isPasswordValid = await user.comparePassword(password)
+      console.log(`ispassword: ${isPasswordValid}`)
       if (!isPasswordValid) {
         return res.status(403).send({
           error: `Password salah.`

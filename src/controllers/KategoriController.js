@@ -37,5 +37,16 @@ module.exports = {
     }).catch(err => {
       res.send(err)
     })
+  },
+  update (req, res) {
+    Kategori.update(req.body, {
+      where: {
+        id: req.params.id
+      }
+    }).then(rsl => {
+      res.send(rsl)
+    }).catch(err => {
+      res.send(err)
+    })
   }
 }

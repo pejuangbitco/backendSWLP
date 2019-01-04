@@ -9,6 +9,7 @@ module.exports = {
 
       const posting = await Lokasi.create(req.body.Lokasi)
         .then(lokasi => {
+          Penyedia.create(req.body.Lokasi)
           return lokasi.id
         })
         // req.body.post.LokasiId = lokasi.id
