@@ -14,6 +14,18 @@ module.exports = {
       status_post: {
         type: Sequelize.STRING
       },
+      perjam: {
+        type: Sequelize.STRING
+      },
+      perhari: {
+        type: Sequelize.STRING
+      },
+      perbulan: {
+        type: Sequelize.STRING
+      },
+      pertahun: {
+        type: Sequelize.STRING
+      },
       deskripsi_umum: {
         type: Sequelize.STRING
       },

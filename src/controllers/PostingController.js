@@ -1,27 +1,21 @@
-const { Post, Fotopost, Lokasi, Harga, Fasilitas, Penyedia } = require('../../models')
-
+const { Post, Fotopost, Lokasi, Fasilitas, Penyedia } = require('../../models')
+const { sequelize } = require('../../models')
 module.exports = {
   async save (req, res) {
     try {
-      // const posting = await Post.create(req.body, {
-      //   include: [ Fotopost ]
-      // })
-
-      const posting = await Lokasi.create(req.body.Lokasi)
-        .then(lokasi => {
-          Penyedia.create(req.body.Lokasi)
-          return lokasi.id
+      const post = req.body
+      const posting = await sequelize
+        .query(`CALL PostAddorEdit(${post.id},'${post.judulPost}','${post.statusPost}','${post.perjam}','${post.perhari}','${post.perbulan}','${post.pertahun}','${post.deskripsiUmum}','${post.latitude}','${post.longitude}','${post.namaPenyedia}','${post.alamat}','${post.kecamatan}','${post.kota}','${post.provinsi}','${post.alamatPenyedia}','${post.kecamatanPenyedia}','${post.kotaPenyedia}','${post.provinsiPenyedia}',${post.KategoriId},${post.Penyedium},${post.LokasiId},${post.LokasiIdPenyedia})`).spread((result, metadata) => {
+          post.Fotopost.forEach(element => {
+            element.PostId = result.id
+          })
+          post.Fasilitas.forEach(element => {
+            element.PostId = result.id
+          })
+          Fotopost.bulkCreate(post.Fotopost)
+          Fasilitas.bulkCreate(post.Fasilitas)
+          return result
         })
-        // req.body.post.LokasiId = lokasi.id
-        // console.log(`PelapakId: ${pelapak}`)
-        // req.body.post.Penyedium = pelapak
-        // return Post.create(req.body.post, { include: [Fotopost, Fasilitas] })
-        // })
-        // .then(post => {
-        //   req.body.post.Harga.PostId = post.id
-        //   Harga.create(req.body.post.Harga)
-        //   return post
-        // })
       res.send(posting)
     } catch (error) {
       res.status(404).send({
@@ -33,7 +27,7 @@ module.exports = {
     try {
       await Post.destroy({
         where: {
-          id: req.params.id_Post
+          id: req.params.id
         }
       })
       res.status(200).send({
@@ -48,7 +42,7 @@ module.exports = {
   async getAll (req, res) {
     try {
       const posting = await Post.findAll({
-        include: [ Fotopost, Lokasi, Harga, Fasilitas, Penyedia ]
+        include: [ Fotopost, Lokasi, Fasilitas, Penyedia ]
       })
       res.status(200).send(posting)
     } catch (error) {
@@ -59,7 +53,11 @@ module.exports = {
   },
   async getOne (req, res) {
     try {
-      const posting = await Post.findById(req.params.id_Post)
+      const posting = await Post.findByPk(req.params.id, {
+        include: [
+          Fotopost, Lokasi, Fasilitas, { model: Penyedia, include: [ Lokasi ] }
+        ]
+      })
       res.send(posting)
     } catch (error) {
       res.status(404).send({

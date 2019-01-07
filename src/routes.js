@@ -3,6 +3,7 @@ const AuthenticationControllerPolicy = require('./policies/AuthenticationControl
 const PostingController = require('./controllers/PostingController')
 const LokasiController = require('./controllers/LokasiController')
 const KategoriController = require('./controllers/KategoriController')
+const UserController = require('./controllers/UserController')
 
 module.exports = (app) => {
   app.post('/register',
@@ -15,15 +16,17 @@ module.exports = (app) => {
   app.post('/post',
     PostingController.save)
 
-  app.delete('/post/:id_post',
+  app.delete('/post/:id',
     PostingController.delete)
 
   app.get('/post',
     PostingController.getAll)
 
-  app.get('/post/:id_post',
+  app.get('/post/:id',
     PostingController.getOne)
 
+  // // // // // // //
+  // Lokasi Section
   app.post('/lokasi',
     LokasiController.save)
 
@@ -36,9 +39,10 @@ module.exports = (app) => {
   app.delete('/lokasi/:id',
     LokasiController.delete)
 
-  // app.delete('/lokasi/:id',
-  //   LokasiController.delete)
-
+  app.post('/lokasi/:id',
+    LokasiController.update)
+  // // // // // // //
+  // Kategori Section
   app.post('/kategori',
     KategoriController.save)
 
@@ -53,4 +57,18 @@ module.exports = (app) => {
 
   app.post('/kategori/:id',
     KategoriController.update)
+
+  // // // // // // //
+  // Users Section
+  app.get('/users',
+    UserController.getAll)
+
+  app.get('/user/:id',
+    UserController.getOne)
+
+  app.delete('/user/:id',
+    UserController.delete)
+
+  app.post('/user/:id',
+    UserController.update)
 }
