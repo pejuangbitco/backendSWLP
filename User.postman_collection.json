@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "7ee42229-3d1b-441f-9084-62125e627333",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstname\":\"syad\",\n\t\"lastname\":\"einste\",\n\t\"role\":\"admin\",\n\t\"email\":\"syad@gmail.com\",\n\t\"password\":\"12345678\",\n\t\"foto_user\":\"syad123\",\n\t\"no_hp\":\"085758612443\",\n\t\"wa\":\"085758612443\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8081/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"register"
+					]
+				},
+				"description": "register User"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"syad@gmail.com\",\n\t\"password\":\"12345678\"\n}"
+				},
+				"url": {
+					"raw": "localhost:8081/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"login"
+					]
+				},
+				"description": "login User"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8081/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users"
+					]
+				},
+				"description": "getALl user"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/user/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8081/user/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user",
+						"1"
+					]
+				},
+				"description": "getOne User"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/user/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8081/user/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user",
+						"1"
+					]
+				},
+				"description": "delete user"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/user/1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"firstname\": \"terupdate\",\n        \"lastname\": \"einste\",\n        \"role\": \"admin\",\n        \"email\": \"syad@gmail.com\",\n        \"password\": \"$2a$08$mBVbNAa6XE9HjHMzZ43UOeqywu8J439sk0VGnQrYuwgn/UttN8S0W\",\n        \"foto_user\": \"syad123\",\n        \"no_hp\": \"085758612443\",\n        \"wa\": \"085758612443\",\n        \"createdAt\": \"2019-01-04T12:22:13.000Z\",\n        \"updatedAt\": \"2019-01-04T12:22:13.000Z\"\n    }"
+				},
+				"url": {
+					"raw": "localhost:8081/user/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"user",
+						"1"
+					]
+				},
+				"description": "update user"
+			},
+			"response": []
+		}
+	]
+}
