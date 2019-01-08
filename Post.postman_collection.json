@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "cfd2cb31-f8cf-4cbf-8c55-f51274a23d9b",
+		"name": "Post",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/post/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"judul_post\": \"post tiga\",\n\t\"perjam\": \"20000\",\n\t\"perhari\": \"50000\",\n\t\"perbulan\": \"100000\",\n\t\"status_post\": 0,\n\t\"kategori_idKategori\": \"1\",\n\t\"admin_idAdmin\": \"1\",\n\t\"penyedia_idPenyedia\": \"1\",\n\t\"lokasi_idLokasi\": \"1\",\n\t\"titik\": {\n\t\t\"type\": \"Point\", \"coordinates\": [39.807222,-76.984722]\n\t}\n}"
+				},
+				"url": {
+					"raw": "localhost:8081/post/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"post",
+						""
+					]
+				},
+				"description": "getAll"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/post/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8081/post/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"post",
+						"1"
+					]
+				},
+				"description": "delete post"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/post/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8081/post/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"post",
+						"1"
+					]
+				},
+				"description": "getOne"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 0,\n\t\"judulPost\": \"post toha\",\n\t\"deskripsiUmum\": \"ini lapak yang sangat ramai\",\n\t\"statusPost\": \"tersedia\",\n\t\"perjam\": \"20000\",\n\t\"perhari\": \"50000\",\n\t\"perbulan\": \"500000\",\n\t\"pertahun\": \"600000\",\n\t\"latitude\": 88.456,\n\t\"longitude\": -71.345,\n\t\"namaPenyedia\": \"zikry aja\",\n\t\"alamat\":\"gang buntu2\",\n\t\"kecamatan\":\"tambangan\",\n\t\"kota\":\"indralaya\",\n\t\"provinsi\":\"sumatera selatan\",\n\t\"alamatPenyedia\":\"gang buntu2\",\n\t\"kecamatanPenyedia\":\"tambangan\",\n\t\"kotaPenyedia\":\"palembang\",\n\t\"provinsiPenyedia\":\"sumatera selatan\",\n\t\"KategoriId\": 1,\n\t\"Penyedium\": 0,\n\t\"LokasiId\": 0,\n\t\"LokasiIdPenyedia\": 0,\n\t\"Fotopost\": [\n\t\t{\"nama_foto\": \"12345\", \"PostId\": null},\n\t\t{\"nama_foto\": \"1253567\", \"PostId\": null}\n\t],\n\t\"Fasilitas\": [\n\t\t{\"nama_fasilitas\":\"wifi\", \"PostId\": null},\n\t\t{\"nama_fasilitas\":\"gerobak\", \"PostId\": null}\n\t]\n}"
+				},
+				"url": {
+					"raw": "localhost:8081/post",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"post"
+					]
+				},
+				"description": "INPUT YG BENAR (CREATE)"
+			},
+			"response": []
+		}
+	]
+}
