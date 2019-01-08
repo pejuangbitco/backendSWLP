@@ -19,7 +19,7 @@ module.exports = {
       })
   },
   getOne (req, res) {
-    Lokasi.findById(req.params.id)
+    Lokasi.findByPk(req.params.id)
       .then(rsl => {
         res.send(rsl)
       })

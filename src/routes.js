@@ -13,6 +13,8 @@ module.exports = (app) => {
   app.post('/login',
     AuthenticationController.login)
 
+  // // // // // // //
+  // Post Section
   app.post('/post',
     PostingController.save)
 
@@ -21,9 +23,6 @@ module.exports = (app) => {
 
   app.get('/post',
     PostingController.getAll)
-
-  app.get('/post/:id',
-    PostingController.getOne)
 
   // // // // // // //
   // Lokasi Section

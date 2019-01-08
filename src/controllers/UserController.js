@@ -11,7 +11,7 @@ module.exports = {
   },
   async getOne (req, res) {
     try {
-      const user = await User.findById(req.params.id)
+      const user = await User.findByPk(req.params.id)
       if (user === null) {
         res.status(404).send('user tidak ditemukan')
       } else {
