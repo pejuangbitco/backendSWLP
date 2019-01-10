@@ -8,12 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      alamat: {
-        type: Sequelize.STRING
-      },
-      kecamatan: {
-        type: Sequelize.STRING
-      },
       kota: {
         type: Sequelize.STRING
       },

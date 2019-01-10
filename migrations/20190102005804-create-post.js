@@ -29,6 +29,12 @@ module.exports = {
       deskripsi_umum: {
         type: Sequelize.STRING
       },
+      alamat: {
+        type: Sequelize.STRING
+      },
+      kecamatan: {
+        type: Sequelize.STRING
+      },
       titik: {
         type: Sequelize.GEOMETRY
       },

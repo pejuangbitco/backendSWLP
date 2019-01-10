@@ -1,8 +1,6 @@
 'use strict'
 module.exports = (sequelize, DataTypes) => {
   const Lokasi = sequelize.define('Lokasi', {
-    alamat: DataTypes.STRING,
-    kecamatan: DataTypes.STRING,
     kota: DataTypes.STRING,
     provinsi: DataTypes.STRING
   }, {})

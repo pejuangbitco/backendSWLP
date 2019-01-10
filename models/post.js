@@ -11,9 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     titik: DataTypes.GEOMETRY
   }, {})
   Post.associate = function (models) {
-    // associations can be defined here
-    // Post.hasOne(models.Harga)
-    // Post.belongsTo(models.Kategori)
+    Post.belongsTo(models.Kategori)
     Post.hasMany(models.Fasilitas)
     Post.belongsTo(models.Lokasi)
     Post.hasMany(models.Fotopost)

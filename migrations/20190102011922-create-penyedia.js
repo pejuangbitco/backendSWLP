@@ -11,6 +11,12 @@ module.exports = {
       nama_penyedia: {
         type: Sequelize.STRING
       },
+      alamat: {
+        type: Sequelize.STRING
+      },
+      kecamatan: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
