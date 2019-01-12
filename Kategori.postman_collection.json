@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nama_kategori\": \"ruko\"\n}"
+					"raw": "{\n\t\"nama_kategori\": \"alfa\"\n}"
 				},
 				"url": {
 					"raw": "localhost:8081/kategori",
@@ -134,6 +134,39 @@
 					]
 				},
 				"description": "kategori Update"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/lokasi?kota=jakarta+selatan&provinsi=dki+jakarta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8081/lokasi?kota=jakarta+selatan&provinsi=dki+jakarta",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"lokasi"
+					],
+					"query": [
+						{
+							"key": "kota",
+							"value": "jakarta+selatan"
+						},
+						{
+							"key": "provinsi",
+							"value": "dki+jakarta"
+						}
+					]
+				},
+				"description": "get with query"
 			},
 			"response": []
 		}

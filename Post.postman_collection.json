@@ -134,6 +134,80 @@
 				"description": "INPUT YG BENAR (CREATE)"
 			},
 			"response": []
+		},
+		{
+			"name": "localhost:8081/post/1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"judul_post\": \"TERUPDAET rukoo\",\n    \"status_post\": \"tersedia\",\n    \"perjam\": \"20000\",\n    \"perhari\": \"50000\",\n    \"perbulan\": \"500000\",\n    \"pertahun\": \"600000\",\n    \"deskripsi_umum\": \"ini lapak yang sangat ramai\",\n    \"titik\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n            55.3456,\n            -45.321\n        ]\n    },\n    \"KategoriId\": 2,\n    \"LokasiId\": 2,\n    \"PenyediumId\": 5,\n    \"Penyedia\": {\n    \t\"nama_penyedia\": \"INI SYAD\"\n    },\n    \"Fotopost\": [\n\t\t\t{\"nama_foto\": \"8888\"},\n\t\t\t{\"nama_foto\": \"88888\"}\n\t],\n\t\"Fasilitas\": [\n\t\t{\"nama_fasilitas\":\"888\"},\n\t\t{\"nama_fasilitas\":\"8888\"}\n\t]\t\n}"
+				},
+				"url": {
+					"raw": "localhost:8081/post/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"post",
+						"5"
+					]
+				},
+				"description": "UPDATE POST"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8081/post?kategori=alfa&provinsi=dki+jakarta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8081/post?kategori=alfa&provinsi=dki+jakarta",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"post"
+					],
+					"query": [
+						{
+							"key": "kategori",
+							"value": "alfa"
+						},
+						{
+							"key": "provinsi",
+							"value": "dki+jakarta"
+						}
+					]
+				},
+				"description": "posting query"
+			},
+			"response": []
 		}
 	]
 }

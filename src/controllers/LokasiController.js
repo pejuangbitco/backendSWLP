@@ -10,7 +10,16 @@ module.exports = {
       })
   },
   getAll (req, res) {
-    Lokasi.findAll()
+    let whereClause = {}
+    if (req.query.kota) {
+      whereClause['kota'] = req.query.kota
+    }
+    if (req.query.provinsi) {
+      whereClause['provinsi'] = req.query.provinsi
+    }
+    Lokasi.findAll({
+      where: whereClause
+    })
       .then(rsl => {
         res.send(rsl)
       })

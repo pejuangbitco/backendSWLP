@@ -1,4 +1,4 @@
-const { Post, Fotopost, Lokasi, Fasilitas, Penyedia } = require('../../models')
+const { Post, Fotopost, Lokasi, Fasilitas, Penyedia, Kategori } = require('../../models')
 // const md5 = require('md5')
 module.exports = {
   async save (req, res) {
@@ -33,7 +33,7 @@ module.exports = {
         include: [{
           model: Post,
           include: [
-            Fotopost, Fasilitas, Lokasi
+            Fotopost, Fasilitas, Lokasi, Kategori
           ]
         }, Lokasi ]
       })
@@ -62,15 +62,19 @@ module.exports = {
   },
   async getAll (req, res) {
     try {
-      let whereClause = {}
+      let whereKategori = {}
+      let whereLokasi = {}
       if (req.query.kategori) {
-        whereClause['KategoriId'] = req.query.kategori
+        whereKategori['nama_kategori'] = req.query.kategori
       }
-      // if (req.query.kategori) {
-      //   whereClause['KategoriId'] = req.query.kategori
-      // }
+      if (req.query.kota) {
+        whereLokasi['kota'] = req.query.kota
+      }
+      if (req.query.provinsi) {
+        whereLokasi['provinsi'] = req.query.provinsi
+      }
       const posting = await Post.findAll({
-        include: [ Fotopost, Lokasi, Fasilitas, { model: Penyedia, include: [ Lokasi ] } ]
+        include: [ Fotopost, { model: Lokasi, where: whereLokasi }, Fasilitas, { model: Kategori, where: whereKategori }, { model: Penyedia, include: [ Lokasi ] } ]
       })
       res.send(posting)
     } catch (error) {
@@ -83,7 +87,7 @@ module.exports = {
     try {
       const posting = await Post.findByPk(req.params.id, {
         include: [
-          Fotopost, Lokasi, Fasilitas, { model: Penyedia, include: [ Lokasi ] }
+          Fotopost, Lokasi, Fasilitas, Kategori, { model: Penyedia, include: [ Lokasi ] }
         ]
       })
       res.send(posting)
