@@ -27,6 +27,9 @@ module.exports = (app) => {
   app.get('/post/:id',
     PostingController.getOne)
 
+  app.post('/post/:id',
+    PostingController.update)
+
   // // // // // // //
   // Lokasi Section
   app.post('/lokasi',

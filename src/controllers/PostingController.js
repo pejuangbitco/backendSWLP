@@ -93,22 +93,47 @@ module.exports = {
       })
     }
   },
-  async getFillter (req, res) {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+  async update (req, res) {
     try {
-      const posting = await Post.findAll({
+      await Post.update(req.body, {
         where: {
-          kategoriId: req.params.kategori
+          id: req.params.id
         }
-      }, {
-        include: [
-          Fotopost, Lokasi, Fasilitas, { model: Penyedia, include: [ Lokasi ] }
-        ]
       })
-      res.send(posting)
+
+      await Penyedia.update(req.body.Penyedia, {
+        where: {
+          id: req.body.PenyediumId
+        }
+      })
+
+      await Fasilitas.destroy({
+        where: {
+          PostId: req.params.id
+        }
+      })
+      await Fotopost.destroy({
+        where: {
+          PostId: req.params.id
+        }
+      })
+      if (req.body.Fasilitas !== null) {
+        req.body.Fasilitas.forEach(element => {
+          element['PostId'] = req.params.id
+        })
+        await Fasilitas.bulkCreate(req.body.Fasilitas)
+      }
+      if (req.body.Fotopost !== null) {
+        req.body.Fotopost.forEach(element => {
+          element['PostId'] = req.params.id
+        })
+        await Fotopost.bulkCreate(req.body.Fotopost)
+      }
+
+      res.send(`SUCCESS`)
     } catch (error) {
       res.status(404).send({
-        error: `something error happen: ${error}`
+        error: `something UPDATE error happen: ${error}`
       })
     }
   }
