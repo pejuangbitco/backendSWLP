@@ -1,4 +1,5 @@
-const { Post, Fotopost, Lokasi, Fasilitas, Penyedia, Kategori } = require('../../models')
+const { Post, Fotopost, Lokasi, Fasilitas, Penyedia, Kategori, Sequelize } = require('../../models')
+const Op = Sequelize.Op
 // const md5 = require('md5')
 module.exports = {
   async save (req, res) {
@@ -51,23 +52,32 @@ module.exports = {
       if (req.query.provinsi) {
         whereLokasi['provinsi'] = req.query.provinsi
       }
-      if (req.query.harga) {
-        switch (req.query.harga) {
-          case 'height' :
-            limitOrderClause['order'] = [['perbulan', 'DESC']]
-            break
-          case 'lowest' :
-            limitOrderClause['order'] = [['perbulan', 'ASC']]
-            break
-          default:
-            break
-        }
-      }
       if (req.query.limit) {
         limitOrderClause['limit'] = parseInt(req.query.limit)
       }
       if (req.query.offset) {
         limitOrderClause['offset'] = parseInt(req.query.offset)
+      }
+      if (req.query.sort) {
+        switch (req.query.sort) {
+          case 'highest' :
+            limitOrderClause['order'] = [['perbulan', 'DESC']]
+            break
+          case 'lowest' :
+            limitOrderClause['order'] = [['perbulan', 'ASC']]
+            break
+          case 'newest' :
+            limitOrderClause['order'] = [['id', 'DESC']]
+            break
+          case 'oldest' :
+            limitOrderClause['order'] = [['id', 'ASC']]
+            break
+          default:
+            break
+        }
+      }
+      if (req.query.search) {
+        limitOrderClause['where'] = { judul_post: { [Op.like]: `%${req.query.search}%` } }
       }
       const posting = await Post.findAll(limitOrderClause, {
         include: [ Fotopost, { model: Lokasi, where: whereLokasi }, Fasilitas, { model: Kategori, where: whereKategori }, { model: Penyedia, include: [ Lokasi ] } ]
