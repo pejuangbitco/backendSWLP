@@ -66,6 +66,9 @@ module.exports = {
       if (req.query.limit) {
         limitOrderClause['limit'] = parseInt(req.query.limit)
       }
+      if (req.query.offset) {
+        limitOrderClause['offset'] = parseInt(req.query.offset)
+      }
       const posting = await Post.findAll(limitOrderClause, {
         include: [ Fotopost, { model: Lokasi, where: whereLokasi }, Fasilitas, { model: Kategori, where: whereKategori }, { model: Penyedia, include: [ Lokasi ] } ]
       })
