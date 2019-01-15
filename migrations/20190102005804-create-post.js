@@ -11,9 +11,6 @@ module.exports = {
       judul_post: {
         type: Sequelize.STRING
       },
-      status_post: {
-        type: Sequelize.STRING
-      },
       perjam: {
         type: Sequelize.STRING
       },

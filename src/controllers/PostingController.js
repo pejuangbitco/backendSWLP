@@ -3,32 +3,6 @@ const { Post, Fotopost, Lokasi, Fasilitas, Penyedia, Kategori } = require('../..
 module.exports = {
   async save (req, res) {
     try {
-      // const post = req.body
-      // const posting = await sequelize
-      //   .query(`CALL PostAddorEdit(${post.id},'${post.judulPost}','${post.statusPost}','${post.perjam}','${post.perhari}','${post.perbulan}','${post.pertahun}','${post.deskripsiUmum}','${post.latitude}','${post.longitude}','${post.namaPenyedia}','${post.alamat}','${post.kecamatan}','${post.kota}','${post.provinsi}','${post.alamatPenyedia}','${post.kecamatanPenyedia}','${post.kotaPenyedia}','${post.provinsiPenyedia}',${post.KategoriId},${post.Penyedium},${post.LokasiId},${post.LokasiIdPenyedia})`).spread((result, metadata) => {
-      //     post.Fotopost.forEach(element => {
-      //       element.PostId = result.id
-      //       // element.nama_foto = md5(element.nama_foto)
-      //     })
-      //     post.Fasilitas.forEach(element => {
-      //       element.PostId = result.id
-      //     })
-      //     Fotopost.bulkCreate(post.Fotopost)
-      //     Fasilitas.bulkCreate(post.Fasilitas)
-      //     return result
-      //   })
-      // if (post.id !== 0) {
-      //   Fotopost.destroy({
-      //     where: {
-      //       PostId: post.id
-      //     }
-      //   })
-      //   Fasilitas.destroy({
-      //     where: {
-      //       PostId: post.id
-      //     }
-      //   })
-      // }
       const posting = await Penyedia.create(req.body, {
         include: [{
           model: Post,
@@ -40,19 +14,22 @@ module.exports = {
       res.send(posting)
     } catch (error) {
       res.status(404).send({
-        error: `something SAVE error happen: ${error}`
+        error: `something error happen: ${error}`
       })
     }
   },
   async delete (req, res) {
     try {
-      await Post.destroy({
-        where: {
-          id: req.params.id
-        }
-      })
-      res.status(200).send({
-        message: `success deleted`
+      await Post.findByPk(req.params.id, {
+        include: [
+          Fotopost, Lokasi, Fasilitas, Kategori, { model: Penyedia, include: [ Lokasi ] }
+        ]
+      }).then(post => {
+        return post.destroy()
+      }).then(() => {
+        res.status(200).send({
+          message: `success deleted`
+        })
       })
     } catch (error) {
       res.status(404).send({
@@ -64,6 +41,7 @@ module.exports = {
     try {
       let whereKategori = {}
       let whereLokasi = {}
+      let limitOrderClause = {}
       if (req.query.kategori) {
         whereKategori['nama_kategori'] = req.query.kategori
       }
@@ -73,7 +51,22 @@ module.exports = {
       if (req.query.provinsi) {
         whereLokasi['provinsi'] = req.query.provinsi
       }
-      const posting = await Post.findAll({
+      if (req.query.harga) {
+        switch (req.query.harga) {
+          case 'height' :
+            limitOrderClause['order'] = [['perbulan', 'DESC']]
+            break
+          case 'lowest' :
+            limitOrderClause['order'] = [['perbulan', 'ASC']]
+            break
+          default:
+            break
+        }
+      }
+      if (req.query.limit) {
+        limitOrderClause['limit'] = parseInt(req.query.limit)
+      }
+      const posting = await Post.findAll(limitOrderClause, {
         include: [ Fotopost, { model: Lokasi, where: whereLokasi }, Fasilitas, { model: Kategori, where: whereKategori }, { model: Penyedia, include: [ Lokasi ] } ]
       })
       res.send(posting)
