@@ -45,13 +45,19 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8081/kategori",
+					"raw": "localhost:8081/kategori?sort=asc",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
 						"kategori"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "asc"
+						}
 					]
 				},
 				"description": "getAll"
@@ -138,7 +144,7 @@
 			"response": []
 		},
 		{
-			"name": "localhost:8081/lokasi?kota=jakarta+selatan&provinsi=dki+jakarta",
+			"name": "localhost:8081/kategori?sort=asc",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -147,26 +153,22 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "localhost:8081/lokasi?kota=jakarta+selatan&provinsi=dki+jakarta",
+					"raw": "localhost:8081/kategori?sort=asc",
 					"host": [
 						"localhost"
 					],
 					"port": "8081",
 					"path": [
-						"lokasi"
+						"kategori"
 					],
 					"query": [
 						{
-							"key": "kota",
-							"value": "jakarta+selatan"
-						},
-						{
-							"key": "provinsi",
-							"value": "dki+jakarta"
+							"key": "sort",
+							"value": "asc"
 						}
 					]
 				},
-				"description": "get with query"
+				"description": "query kategori"
 			},
 			"response": []
 		}

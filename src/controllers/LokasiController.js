@@ -11,14 +11,24 @@ module.exports = {
   },
   getAll (req, res) {
     let whereClause = {}
+    let orderClause = {}
     if (req.query.kota) {
       whereClause['kota'] = req.query.kota
     }
     if (req.query.provinsi) {
       whereClause['provinsi'] = req.query.provinsi
     }
+    if (req.query.sort) {
+      if (req.query.sort.kota) {
+        orderClause = [['kota', `${req.query.sort.kota}`]]
+      }
+      if (req.query.sort.provinsi) {
+        orderClause = [['provinsi', `${req.query.sort.provinsi}`]]
+      }
+    }
     Lokasi.findAll({
-      where: whereClause
+      where: whereClause,
+      order: orderClause
     })
       .then(rsl => {
         res.send(rsl)

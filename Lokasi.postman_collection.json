@@ -137,6 +137,35 @@
 				"description": "update lokasi"
 			},
 			"response": []
+		},
+		{
+			"name": "localhost:8081/lokasi?kota=jakarta+selatan&provinsi=dki+jakarta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8081/lokasi?sort[provinsi]=desc",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"lokasi"
+					],
+					"query": [
+						{
+							"key": "sort[provinsi]",
+							"value": "desc"
+						}
+					]
+				},
+				"description": "query lokasi"
+			},
+			"response": []
 		}
 	]
 }

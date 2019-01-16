@@ -10,7 +10,13 @@ module.exports = {
       })
   },
   getAll (req, res) {
-    Kategori.findAll()
+    let sortClause = {}
+    if (req.query.sort) {
+      if (req.query.sort === 'asc') {
+        sortClause['order'] = [['nama_kategori', `${req.query.sort}`]]
+      }
+    }
+    Kategori.findAll(sortClause)
       .then(rsl => {
         res.send(rsl)
       })
