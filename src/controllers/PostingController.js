@@ -79,9 +79,9 @@ module.exports = {
       if (req.query.search) {
         limitOrderClause['where'] = { judul_post: { [Op.like]: `%${req.query.search}%` } }
       }
-      const posting = await Post.findAll(limitOrderClause, {
+      const posting = await Post.findAll({
         include: [ Fotopost, { model: Lokasi, where: whereLokasi }, Fasilitas, { model: Kategori, where: whereKategori }, { model: Penyedia, include: [ Lokasi ] } ]
-      })
+      }, limitOrderClause)
       res.send(posting)
     } catch (error) {
       res.status(404).send({

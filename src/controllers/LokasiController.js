@@ -1,17 +1,16 @@
 const { Lokasi } = require('../../models')
 module.exports = {
-  save (req, res) {
-    Lokasi.create(req.body)
-      .then(rsl => {
-        res.send(rsl)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  async save (req, res) {
+    try {
+      const data = Lokasi.create(req.body)
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   },
-  getAll (req, res) {
+  async getAll (req, res) {
     let whereClause = {}
-    let orderClause = {}
+    let orderClause = []
     if (req.query.kota) {
       whereClause['kota'] = req.query.kota
     }
@@ -19,53 +18,53 @@ module.exports = {
       whereClause['provinsi'] = req.query.provinsi
     }
     if (req.query.sort) {
-      if (req.query.sort.kota) {
+      if (req.query.sort.kota === 'asc' || req.query.sort.kota === 'desc') {
         orderClause = [['kota', `${req.query.sort.kota}`]]
       }
-      if (req.query.sort.provinsi) {
+      if (req.query.sort.provinsi === 'asc' || req.query.sort.provinsi === 'desc') {
         orderClause = [['provinsi', `${req.query.sort.provinsi}`]]
       }
     }
-    Lokasi.findAll({
-      where: whereClause,
-      order: orderClause
-    })
-      .then(rsl => {
-        res.send(rsl)
+    try {
+      const data = await Lokasi.findAll({
+        where: whereClause,
+        order: orderClause
       })
-      .catch(err => {
-        console.log(err)
-      })
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   },
-  getOne (req, res) {
-    Lokasi.findByPk(req.params.id)
-      .then(rsl => {
-        res.send(rsl)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  async getOne (req, res) {
+    try {
+      const data = Lokasi.findByPk(req.params.id)
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   },
-  delete (req, res) {
-    Lokasi.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(rsl => {
-      res.status(200).send(`success deleted`)
-    }).catch(err => {
-      res.send(err)
-    })
+  async delete (req, res) {
+    try {
+      const data = Lokasi.destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   },
-  update (req, res) {
-    Lokasi.update(req.body, {
-      where: {
-        id: req.params.id
-      }
-    }).then(rsl => {
-      res.send(rsl)
-    }).catch(err => {
-      res.send(err)
-    })
+  async update (req, res) {
+    try {
+      const data = Lokasi.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      })
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   }
 }

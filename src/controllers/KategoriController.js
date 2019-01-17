@@ -1,58 +1,57 @@
 const { Kategori } = require('../../models')
 module.exports = {
-  save (req, res) {
-    Kategori.create(req.body)
-      .then(rsl => {
-        res.send(rsl)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  async save (req, res) {
+    try {
+      const data = Kategori.create(req.body)
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   },
-  getAll (req, res) {
+  async getAll (req, res) {
     let sortClause = {}
     if (req.query.sort) {
       if (req.query.sort === 'asc') {
         sortClause['order'] = [['nama_kategori', `${req.query.sort}`]]
       }
     }
-    Kategori.findAll(sortClause)
-      .then(rsl => {
-        res.send(rsl)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    try {
+      const data = Kategori.findAll(sortClause)
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   },
-  getOne (req, res) {
-    Kategori.findById(req.params.id)
-      .then(rsl => {
-        res.send(rsl)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  async getOne (req, res) {
+    try {
+      const data = Kategori.findById(req.params.id)
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   },
-  delete (req, res) {
-    Kategori.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(rsl => {
-      res.status(200).send(`success deleted`)
-    }).catch(err => {
-      res.send(err)
-    })
+  async delete (req, res) {
+    try {
+      const data = Kategori.destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   },
-  update (req, res) {
-    Kategori.update(req.body, {
-      where: {
-        id: req.params.id
-      }
-    }).then(rsl => {
-      res.send(rsl)
-    }).catch(err => {
-      res.send(err)
-    })
+  async update (req, res) {
+    try {
+      const data = Kategori.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      })
+      res.send(data)
+    } catch (err) {
+      res.status(503).send(`something error happen: ${err}`)
+    }
   }
 }
