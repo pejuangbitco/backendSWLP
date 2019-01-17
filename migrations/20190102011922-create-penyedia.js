@@ -11,6 +11,9 @@ module.exports = {
       nama_penyedia: {
         type: Sequelize.STRING
       },
+      no_hp: {
+        type: Sequelize.STRING
+      },
       alamat: {
         type: Sequelize.STRING
       },

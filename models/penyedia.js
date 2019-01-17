@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Penyedia = sequelize.define('Penyedia', {
     nama_penyedia: DataTypes.STRING,
+    no_hp: DataTypes.STRING,
     alamat: DataTypes.STRING,
     kecamatan: DataTypes.STRING
   }, {})
