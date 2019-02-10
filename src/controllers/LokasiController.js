@@ -2,7 +2,7 @@ const { Lokasi } = require('../../models')
 module.exports = {
   async save (req, res) {
     try {
-      const data = Lokasi.create(req.body)
+      const data = await Lokasi.create(req.body)
       res.send(data)
     } catch (err) {
       res.status(503).send(`something error happen: ${err}`)
@@ -45,7 +45,7 @@ module.exports = {
   },
   async delete (req, res) {
     try {
-      const data = Lokasi.destroy({
+      const data = await Lokasi.destroy({
         where: {
           id: req.params.id
         }
@@ -57,7 +57,7 @@ module.exports = {
   },
   async update (req, res) {
     try {
-      const data = Lokasi.update(req.body, {
+      const data = await Lokasi.update(req.body, {
         where: {
           id: req.params.id
         }

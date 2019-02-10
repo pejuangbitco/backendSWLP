@@ -1,9 +1,13 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
-const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const PostingController = require('./controllers/PostingController')
 const LokasiController = require('./controllers/LokasiController')
 const KategoriController = require('./controllers/KategoriController')
 const UserController = require('./controllers/UserController')
+
+const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
+const PostingControllerPolicy = require('./policies/PostingControllerPolicy')
+const LokasiControllerPolicy = require('./policies/LokasiControllerPolicy')
+const KategoriControllerPolicy = require('./policies/KategoriControllerPolicy')
 
 module.exports = (app) => {
   app.post('/register',
@@ -16,6 +20,7 @@ module.exports = (app) => {
   // // // // // // //
   // Post Section
   app.post('/post',
+    PostingControllerPolicy.newData,
     PostingController.save)
 
   app.delete('/post/:id',
@@ -33,6 +38,7 @@ module.exports = (app) => {
   // // // // // // //
   // Lokasi Section
   app.post('/lokasi',
+    LokasiControllerPolicy.newData,
     LokasiController.save)
 
   app.get('/lokasi',
@@ -49,6 +55,7 @@ module.exports = (app) => {
   // // // // // // //
   // Kategori Section
   app.post('/kategori',
+    KategoriControllerPolicy.newData,
     KategoriController.save)
 
   app.get('/kategori',

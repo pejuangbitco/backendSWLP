@@ -5,6 +5,7 @@ module.exports = {
     const schema = {
       firstname: Joi.string(),
       lastname: Joi.string(),
+      username: Joi.string(),
       role: Joi.string(),
       foto_user: Joi.string(),
       no_hp: Joi.string().regex(

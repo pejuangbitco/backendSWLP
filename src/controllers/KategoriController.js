@@ -2,8 +2,10 @@ const { Kategori } = require('../../models')
 module.exports = {
   async save (req, res) {
     try {
-      const data = Kategori.create(req.body)
-      res.send(data)
+      const data = await Kategori.create(req.body)
+      res.send({
+        data: data
+      })
     } catch (err) {
       res.status(503).send(`something error happen: ${err}`)
     }
@@ -16,7 +18,7 @@ module.exports = {
       }
     }
     try {
-      const data = Kategori.findAll(sortClause)
+      const data = await Kategori.findAll(sortClause)
       res.send(data)
     } catch (err) {
       res.status(503).send(`something error happen: ${err}`)
@@ -24,7 +26,7 @@ module.exports = {
   },
   async getOne (req, res) {
     try {
-      const data = Kategori.findById(req.params.id)
+      const data = await Kategori.findById(req.params.id)
       res.send(data)
     } catch (err) {
       res.status(503).send(`something error happen: ${err}`)
@@ -32,7 +34,7 @@ module.exports = {
   },
   async delete (req, res) {
     try {
-      const data = Kategori.destroy({
+      const data = await Kategori.destroy({
         where: {
           id: req.params.id
         }
@@ -44,7 +46,7 @@ module.exports = {
   },
   async update (req, res) {
     try {
-      const data = Kategori.update(req.body, {
+      const data = await Kategori.update(req.body, {
         where: {
           id: req.params.id
         }

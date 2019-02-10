@@ -23,7 +23,7 @@ module.exports = {
   },
   async delete (req, res) {
     try {
-      User.destroy({
+      await User.destroy({
         where: {
           id: req.params.id
         }
@@ -33,15 +33,19 @@ module.exports = {
       res.status(404).send(`something error: ${error}`)
     }
   },
-  update (req, res) {
-    User.update(req.body, {
-      where: {
-        id: req.params.id
-      }
-    }).then(rsl => {
-      res.send(rsl)
-    }).catch(err => {
-      res.send(err)
-    })
+  async update (req, res) {
+    try {
+      await User.update(req.body, {
+        where: {
+          id: req.params.id
+        }
+      }).then(rsl => {
+        res.send(rsl)
+      }).catch(err => {
+        res.send(err)
+      })
+    } catch (error) {
+      res.status(404).send(`something error: ${error}`)
+    }
   }
 }

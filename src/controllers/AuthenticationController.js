@@ -27,10 +27,21 @@ module.exports = {
   },
   async login (req, res) {
     try {
-      const { email, password } = req.body
+      const { email, username, password } = req.body
+      let createria = {}
+      if (email) {
+        createria = {
+          email: email
+        }
+      }
+      if (username) {
+        createria = {
+          username: username
+        }
+      }
       const user = await User.findOne({
         where: {
-          email: email
+          createria
         }
       })
 
