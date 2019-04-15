@@ -3,15 +3,18 @@ const Joi = require('joi')
 module.exports = {
   newData (req, res, next) {
     const schema = {
+      nama_penyedia: Joi.string(),
+      alamat: Joi.string(),
+      kecamatan: Joi.string(),
       judul_post: Joi.string(),
       perjam: Joi.string(),
       perhari: Joi.string(),
       perbulan: Joi.string(),
       pertahun: Joi.string(),
       deskripsi_umum: Joi.string(),
-      titik: Joi.point(),
       PenyediumId: Joi.number(),
-      LokasiId: Joi.number()
+      LokasiId: Joi.number(),
+      KategoriId: Joi.number()
     }
 
     const { error } = Joi.validate(req.body, schema)
@@ -23,7 +26,7 @@ module.exports = {
           break
         default:
           res.status(400).send({
-            error: 'invalid information kategori'
+            error: `NYA: ${error.details[0].context}`
           })
       }
     } else {

@@ -5,7 +5,6 @@ const KategoriController = require('./controllers/KategoriController')
 const UserController = require('./controllers/UserController')
 
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
-const PostingControllerPolicy = require('./policies/PostingControllerPolicy')
 const LokasiControllerPolicy = require('./policies/LokasiControllerPolicy')
 const KategoriControllerPolicy = require('./policies/KategoriControllerPolicy')
 
@@ -20,7 +19,6 @@ module.exports = (app) => {
   // // // // // // //
   // Post Section
   app.post('/post',
-    PostingControllerPolicy.newData,
     PostingController.save)
 
   app.delete('/post/:id',
