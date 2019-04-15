@@ -27,21 +27,11 @@ module.exports = {
   },
   async login (req, res) {
     try {
-      const { email, username, password } = req.body
-      let createria = {}
-      if (email) {
-        createria = {
-          email: email
-        }
-      }
-      if (username) {
-        createria = {
-          username: username
-        }
-      }
+      const { email, password } = req.body
+
       const user = await User.findOne({
         where: {
-          createria
+          email: email
         }
       })
 
@@ -66,7 +56,7 @@ module.exports = {
       })
     } catch (error) {
       res.status(500).send({
-        error: `an error occured trying to log in`
+        error: `an error occured trying to log in: ${error}`
       })
     }
   }
