@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7ee42229-3d1b-441f-9084-62125e627333",
+		"_postman_id": "d1809343-8d53-4268-a3c9-b57eac790b33",
 		"name": "User",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -139,7 +139,7 @@
 		{
 			"name": "localhost:8081/user/1",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",

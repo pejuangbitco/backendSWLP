@@ -1,4 +1,4 @@
-const { Post, Fotopost, Lokasi, Fasilitas, Penyedia, Kategori, Sequelize } = require('../../models')
+const { Post, Lokasi, Fasilitas, Penyedia, Kategori, Sequelize } = require('../../models')
 const Op = Sequelize.Op
 // const md5 = require('md5')
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
         include: [{
           model: Post,
           include: [
-            Fotopost, Fasilitas, Lokasi, Kategori
+            Fasilitas, Lokasi, Kategori
           ]
         }, Lokasi ]
       })
@@ -23,7 +23,7 @@ module.exports = {
     try {
       await Post.findByPk(req.params.id, {
         include: [
-          Fotopost, Lokasi, Fasilitas, Kategori, { model: Penyedia, include: [ Lokasi ] }
+          Lokasi, Fasilitas, Kategori, { model: Penyedia, include: [ Lokasi ] }
         ]
       }).then(post => {
         return post.destroy()
@@ -80,7 +80,7 @@ module.exports = {
         limitOrderClause['where'] = { judul_post: { [Op.like]: `%${req.query.search}%` } }
       }
       const posting = await Post.findAll({
-        include: [ Fotopost, { model: Lokasi, where: whereLokasi }, Fasilitas, { model: Kategori, where: whereKategori }, { model: Penyedia, include: [ Lokasi ] } ]
+        include: [ { model: Lokasi, where: whereLokasi }, Fasilitas, { model: Kategori, where: whereKategori }, { model: Penyedia, include: [ Lokasi ] } ]
       }, limitOrderClause)
       res.send(posting)
     } catch (error) {
@@ -93,7 +93,7 @@ module.exports = {
     try {
       const posting = await Post.findByPk(req.params.id, {
         include: [
-          Fotopost, Lokasi, Fasilitas, Kategori, { model: Penyedia, include: [ Lokasi ] }
+          Lokasi, Fasilitas, Kategori, { model: Penyedia, include: [ Lokasi ] }
         ]
       })
       res.send(posting)
@@ -122,25 +122,15 @@ module.exports = {
           PostId: req.params.id
         }
       })
-      await Fotopost.destroy({
-        where: {
-          PostId: req.params.id
-        }
-      })
+
       if (req.body.Fasilitas !== null) {
         req.body.Fasilitas.forEach(element => {
           element['PostId'] = req.params.id
         })
         await Fasilitas.bulkCreate(req.body.Fasilitas)
       }
-      if (req.body.Fotopost !== null) {
-        req.body.Fotopost.forEach(element => {
-          element['PostId'] = req.params.id
-        })
-        await Fotopost.bulkCreate(req.body.Fotopost)
-      }
 
-      res.send(`SUCCESS`)
+      res.send(`success update data`)
     } catch (error) {
       res.status(404).send({
         error: `something UPDATE error happen: ${error}`

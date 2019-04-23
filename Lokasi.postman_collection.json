@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e0900d75-5048-481d-8635-cabc7773d320",
+		"_postman_id": "2db4e5b5-f7e9-43ad-8cbd-03b66fe8617e",
 		"name": "Lokasi",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"alamat\": \"gang buntu2\",\n\t\"kecamatan\": \"layo\",\n\t\"kota\": \"ogan ilir\",\n\t\"provinsi\": \"sumatera selatan\"\n}"
+					"raw": "{\n\t\"kota\": \"ogan ilir\",\n\t\"provinsi\": \"sumatera selatan\"\n}"
 				},
 				"url": {
 					"raw": "localhost:8081/lokasi",
@@ -110,7 +110,7 @@
 		{
 			"name": "localhost:8081/lokasi/1",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -121,7 +121,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"alamat\": \"gang buntu2\",\n\t\"kecamatan\": \"layo\",\n\t\"kota\": \"ogan ilir\",\n\t\"provinsi\": \"sumatera selatan\"\n}"
+					"raw": "{\n\t\"kota\": \"ogan ilir\",\n\t\"provinsi\": \"sumatera selatan\"\n}"
 				},
 				"url": {
 					"raw": "localhost:8081/lokasi/1",

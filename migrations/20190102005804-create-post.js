@@ -11,6 +11,9 @@ module.exports = {
       judul_post: {
         type: Sequelize.STRING
       },
+      status: {
+        type: Sequelize.STRING
+      },
       perjam: {
         type: Sequelize.STRING
       },
@@ -26,14 +29,8 @@ module.exports = {
       deskripsi_umum: {
         type: Sequelize.STRING
       },
-      alamat: {
+      foto: {
         type: Sequelize.STRING
-      },
-      kecamatan: {
-        type: Sequelize.STRING
-      },
-      titik: {
-        type: Sequelize.GEOMETRY
       },
       createdAt: {
         allowNull: false,

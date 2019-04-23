@@ -30,7 +30,7 @@ module.exports = (app) => {
   app.get('/post/:id',
     PostingController.getOne)
 
-  app.post('/post/:id',
+  app.put('/post/:id',
     PostingController.update)
 
   // // // // // // //
@@ -48,7 +48,7 @@ module.exports = (app) => {
   app.delete('/lokasi/:id',
     LokasiController.delete)
 
-  app.post('/lokasi/:id',
+  app.put('/lokasi/:id',
     LokasiController.update)
   // // // // // // //
   // Kategori Section
@@ -65,7 +65,7 @@ module.exports = (app) => {
   app.delete('/kategori/:id',
     KategoriController.delete)
 
-  app.post('/kategori/:id',
+  app.put('/kategori/:id',
     KategoriController.update)
 
   // // // // // // //
@@ -79,6 +79,6 @@ module.exports = (app) => {
   app.delete('/user/:id',
     UserController.delete)
 
-  app.post('/user/:id',
+  app.put('/user/:id',
     UserController.update)
 }

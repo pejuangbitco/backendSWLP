@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1045210a-5429-46b7-81e2-5c9c93c96480",
+		"_postman_id": "6e93db34-98f6-4b1d-a741-6fe7903e47f6",
 		"name": "Kategori",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -115,7 +115,7 @@
 		{
 			"name": "localhost:8081/kategori/1",
 			"request": {
-				"method": "POST",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
